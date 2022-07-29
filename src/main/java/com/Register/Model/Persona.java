@@ -3,7 +3,6 @@ package com.Register.Model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -20,19 +19,57 @@ public class Persona implements Serializable {
     private Long idPersona;
     
     @NotEmpty
-    private String nombre;
+    @Column(length = 120)
+    private String primerNombre;
     
     @NotEmpty
-    private String apellido;
+    @Column(length = 20)
+    private String primerApellido;
     
-    @NotEmpty
-    @Email
+    
+    @Column(length = 20)
+    private String segundoApellido;
+    
+    
+    @Column(length = 20)
+    private String otrosNombres;
+    
+    
+    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String email;
     
-    private String telefono;
-
+    
+    private String numeroDeIdentificacion;
+    
+    
+    private String paisEmpleo;
+    
+    
+   private String tipoIdentificacion; 
+    
     
 
+    
+ public void setPrimerNombre(String primerNombre) {
+        this.primerNombre= primerNombre.toUpperCase();
+    }
    
+ public void setOtroNombre(String otrosNombres) {
+        this.otrosNombres= otrosNombres.toUpperCase();
+    }
+ 
+ public void setPrimerApellido(String primerApellido) {
+        this.primerApellido= primerApellido.toUpperCase();
+    }
+ 
+ public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido= segundoApellido.toUpperCase();
+    }
     
+
+ 
+ public String getEmail(){
+      return email = primerNombre + "." + primerApellido + "@cidenet.com.co";
+ }
 }

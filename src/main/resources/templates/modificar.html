@@ -13,19 +13,17 @@
             <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
             <br/>
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" th:field="*{nombre}"/>
-            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>
+            <input type="text" name="nombre" th:field="*{primerNombre}"/>
+            <span th:if="${#fields.hasErrors('primerNombre')}" th:errors="*{primerNombre}">Error Nombre</span>
             <br/>
             <label for="apellido">Apellido:</label>
-            <input type="text" name="apellido" th:field="*{apellido}"/>
-            <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Apellido</span>
+            <input type="text" name="apellido" th:field="*{primerApellido}"/>
+            <span th:if="${#fields.hasErrors('primerApellido')}" th:errors="*{primerApellido}">Error Apellido</span>
             <br/>
-            <label for="email">Email:</label>
-            <input type="text" name="email" th:field="*{email}"/>
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error Email</span>
+         
             <br/>
             <label for="telefono">Teléfono:</label>
-            <input type="tel" name="telefono" th:field="*{telefono}"/>
+            <input type="tel" name="" th:field="*{tipoIdentificacion}"/>
             <br/>
             <input type="submit" name="guardar" value="Guardar"/>
         </form>

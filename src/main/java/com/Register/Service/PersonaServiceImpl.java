@@ -27,7 +27,15 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional
     public void guardar(Persona persona) {
+        Persona em = personaDao.findByEmail(persona.getEmail());
+        if(em == null){
+        persona.setEmail(persona.getPrimerNombre() + persona.getPrimerApellido());
         personaDao.save(persona);
+        }
+        else{
+            persona.setEmail(persona.getPrimerNombre() + persona.getPrimerApellido() + 1);
+            personaDao.save(persona);}
+        
     }
 
     @Override
@@ -41,4 +49,9 @@ public class PersonaServiceImpl implements PersonaService {
     public Persona encontrarPersona(Persona persona) {
         return personaDao.findById(persona.getIdPersona()).orElse(null);
     }
+
+    
+
+    
+    
 }

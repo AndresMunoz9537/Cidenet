@@ -8,4 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface PersonaDao extends CrudRepository<Persona, Long>{
     
+       public Persona findByEmail(String email);
+
+    
 }

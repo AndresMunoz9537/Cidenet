@@ -6,6 +6,7 @@ package com.Register.Service;
 
 import java.util.List;
 import com.Register.Model.Persona;
+import java.util.Optional;
 
 public interface PersonaService {
     
@@ -16,4 +17,6 @@ public interface PersonaService {
     public void eliminar(Persona persona);
     
     public Persona encontrarPersona(Persona persona);
+    
+    
 }
