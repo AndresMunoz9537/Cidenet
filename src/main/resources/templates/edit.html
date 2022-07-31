@@ -9,7 +9,7 @@
         <h1>Datos de la Persona</h1>
         <a th:href="@{/}">Regresar</a>
         <br/>
-        <form th:action="@{/guardar}" method="post" th:object="${persona}">
+        <form th:action="@{/editar}" method="post" th:object="${persona}">
             <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
             <br/>
             <label for="primerNombre">Primer Nombre</label>
@@ -28,6 +28,14 @@
             <input type="text" name="segundoApellido" th:field="*{segundoApellido}"/>
             <span th:if="${#fields.hasErrors('segundoApellido')}" th:errors="*{segundoApellido}">Segundo Apellido</span>
             <br/>
+            <label for="email">Email</label>
+            <input type="text" name="email" readonly="" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Email</span>
+            <br/>
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" readonly="" th:field="*{estado}" />
+            <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}" >Estado</span>
+            <br/>
             <label for="numeroDeIdentificacion">Numero de Identificacion</label>
             <input type="text" name="numeroDeIdentificacion" th:field="*{numeroDeIdentificacion}"/>
             <span th:if="${#fields.hasErrors('numeroDeIdentificacion')}" th:errors="*{numeroDeIdentificacion}">Numero de Identificacion</span>
@@ -41,10 +49,8 @@
             <option value="Financiera" name="area" th:field="*{area}">Financiera</option>
             <option value="Compras" name="area" th:field="*{area}" >Compras</option>
             <option value="Operacion" name="area" th:field="*{area}">Operacion</option>
-            <option value="TalentoH" name="area" th:field="*{area}" >TalentoH</option>
+            <option value="Talento Humano" name="area" th:field="*{area}" >Talento Humano</option>
             </select>
-            <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}">Area</span>
-            <br/>
             <label for="paisEmpleo">Pais Empleo</label>
             <select name="select" th:field="*{paisEmpleo}">
             <option value="Colombia" name="paisEmpleo" th:field="*{paisEmpleo}">Colombia</option>
@@ -53,9 +59,14 @@
             <span th:if="${#fields.hasErrors('paisEmpleo')}" th:errors="*{paisEmpleo}">Pais Empleo</span>
             <br/>
             <label for="fechaDeIngreso">Fecha De Ingreso</label>
-            <input type="Date" name="fechaDeIngreso" th:field="*{fechaDeIngreso}"/>
-            <span th:if="${#fields.hasErrors('fechaDeIngreso')}" th:errors="*{fechaDeIngreso}">Error ApellidoFecha De Ingreso</span>
+            <input type="text" name="fechaDeIngreso" readonly="" th:field="*{fechaDeIngreso}" />
+            <span th:if="${#fields.hasErrors('fechaDeIngreso')}" th:errors="*{fechaDeIngreso}" >Error ApellidoFecha De Edicion</span>
             <br/>
+            <label for="fechaDeRegistro">Fecha De Edicion</label>
+            <input type="text" name="fechaDeRegistro" readonly="" th:field="*{fechaDeRegistro}" />
+            <span th:if="${#fields.hasErrors('fechaDeRegistro')}" th:errors="*{fechaDeRegistro}" >Error ApellidoFecha De Registro</span>
+            <br/>
+            
             
             <input type="submit" name="guardar" value="Guardar"/>
         </form>

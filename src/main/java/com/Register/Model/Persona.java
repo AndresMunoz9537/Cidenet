@@ -2,9 +2,13 @@
 package com.Register.Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Data
@@ -26,27 +30,36 @@ public class Persona implements Serializable {
     @Column(length = 20)
     private String primerApellido;
     
-    
+    @NotEmpty
     @Column(length = 20)
     private String segundoApellido;
     
-    
-    @Column(length = 20)
+    @NotEmpty
+    @Column(length = 50)
     private String otrosNombres;
     
     
-    
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String email;
     
-    
+    @NotEmpty(message = "El campo esta vacio o El numero de identificacion ya esta asociado a otro usuario")
+    @Column (length = 20)
     private String numeroDeIdentificacion;
     
-    
+   
     private String paisEmpleo;
     
-    
-   private String tipoIdentificacion; 
+    @NotEmpty
+   private String tipoDeIdentificacion; 
+      
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+   private LocalDate fechaDeIngreso;
+   
+    @NotEmpty
+   private String area;
+   
+   private String estado;
+   
+   private LocalDateTime fechaDeRegistro;
     
     
 
@@ -55,7 +68,7 @@ public class Persona implements Serializable {
         this.primerNombre= primerNombre.toUpperCase();
     }
    
- public void setOtroNombre(String otrosNombres) {
+ public void setOtrosNombres(String otrosNombres) {
         this.otrosNombres= otrosNombres.toUpperCase();
     }
  
@@ -67,9 +80,15 @@ public class Persona implements Serializable {
         this.segundoApellido= segundoApellido.toUpperCase();
     }
     
+ 
+ 
+
+
+
+
 
  
- public String getEmail(){
-      return email = primerNombre + "." + primerApellido + "@cidenet.com.co";
- }
+
 }
+
+

@@ -7,6 +7,7 @@ package com.Register.Service;
 
 import com.Register.PersonaDao.PersonaDao;
 import com.Register.Model.Persona;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,16 +27,19 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     @Transactional
-    public void guardar(Persona persona) {
-        Persona em = personaDao.findByEmail(persona.getEmail());
-        if(em == null){
-        persona.setEmail(persona.getPrimerNombre() + persona.getPrimerApellido());
-        personaDao.save(persona);
-        }
-        else{
-            persona.setEmail(persona.getPrimerNombre() + persona.getPrimerApellido() + 1);
-            personaDao.save(persona);}
-        
+    public Persona guardar(Persona persona) {
+        persona.setEstado("Activo");
+        persona.setFechaDeRegistro(LocalDateTime.now());
+        persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido() + "@cidenet.com.co");
+        Persona em = personaDao.findByPrimerNombreAndPrimerApellido(persona.getPrimerNombre(),persona.getPrimerApellido());
+        Persona num = personaDao.findByNumeroDeIdentificacion(persona.getNumeroDeIdentificacion());
+        if(em != null){
+            persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido()+"." + 1 + "@cidenet.com.co");
+            
+          }
+        else if(num != null){persona.setNumeroDeIdentificacion(null);}
+         
+        return personaDao.save(persona);
     }
 
     @Override
@@ -47,7 +51,14 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional(readOnly = true)
     public Persona encontrarPersona(Persona persona) {
-        return personaDao.findById(persona.getIdPersona()).orElse(null);
+       return personaDao.findById(persona.getIdPersona()).orElse(null);
+    }
+
+    @Override
+    public void editar(Persona persona) {
+        Persona em = personaDao.findByPrimerNombreAndPrimerApellido(persona.getPrimerNombre(),persona.getPrimerApellido());
+        persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido() + "@cidenet.com.co");
+         personaDao.save(persona);
     }
 
     

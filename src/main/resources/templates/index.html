@@ -12,21 +12,33 @@
             <table border="1">
                 <tr>
                     <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>Otro Nombre</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
                     <th>Email</th>
-                    <th>Teléfono</th>
+                    <th>Numero d eIdentificacion</th>
+                    <th>Tipo de identificacion</th>
+                    <th>Pais de Empleo</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Fecha de Registro</th>
+                    <th>Area</th>
+                    <th>Estado</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
                 <tr th:each="persona : ${personas}">
-                    <td th:text="${persona.primerNombre}">Mostrar Nombre</td>
-                    <td th:text="${persona.otrosNombres}">Mostrar Apellido</td>
-                    <td th:text="${persona.primerApellido}">Mostrar Email</td>
-                    <td th:text="${persona.segundoApellido}">Mostrar Teléfono</td>
-                    <td th:text="${persona.email}">Mostrar Email</td>
-                    <td th:text="${persona.numeroDeIdentificacion}">Mostrar Teléfono</td>
-                    <td th:text="${persona.email}">Mostrar Email</td>
-                    <td th:text="${persona.numeroDeIdentificacion}">Mostrar Teléfono</td>
+                    <td th:text="${persona.primerNombre}">Primer Nombre</td>
+                    <td th:text="${persona.otrosNombres}">Otros Nombres</td>
+                    <td th:text="${persona.primerApellido}">Primer Apellido</td>
+                    <td th:text="${persona.segundoApellido}">Segundo Apellido</td>
+                    <td th:text="${persona.email}">Email</td>
+                    <td th:text="${persona.numeroDeIdentificacion}">Numero de Identificacion</td>
+                    <td th:text="${persona.tipoDeIdentificacion}">Tipo de Identificacion</td>
+                    <td th:text="${persona.paisEmpleo}">Pais de Empleo</td>
+                    <td th:text="${persona.fechaDeIngreso}">Fecha de Ingreso</td>
+                    <td th:text="${persona.fechaDeRegistro}">Fecha de Registro</td>
+                    <td th:text="${persona.area}">Area</td>
+                    <td th:text="${persona.estado}">Estado</td>
                     <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"/></td>
                     <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"/></td>
                 </tr>

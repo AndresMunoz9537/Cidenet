@@ -44,11 +44,20 @@ public class Control {
         return "redirect:/";
     }
     
+    @PostMapping("/editar")
+    public String editar(@Valid Persona persona, Errors errores){
+        if(errores.hasErrors()){
+            return "modificar";
+        }
+        personaService.editar(persona);
+        return "redirect:/";
+    }
+    
     @GetMapping("/editar/{idPersona}")
     public String editar(Persona persona, Model model){
         persona = personaService.encontrarPersona(persona);
         model.addAttribute("persona", persona);
-        return "modificar";
+        return "edit";
     }
     
     @GetMapping("/eliminar")
