@@ -28,13 +28,15 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional
     public Persona guardar(Persona persona) {
+        int cont = 0 ;
         persona.setEstado("Activo");
         persona.setFechaDeRegistro(LocalDateTime.now());
         persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido() + "@cidenet.com.co");
         Persona em = personaDao.findByPrimerNombreAndPrimerApellido(persona.getPrimerNombre(),persona.getPrimerApellido());
         Persona num = personaDao.findByNumeroDeIdentificacion(persona.getNumeroDeIdentificacion());
         if(em != null){
-            persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido()+"." + 1 + "@cidenet.com.co");
+            cont++;
+            persona.setEmail(persona.getPrimerNombre() + "." + persona.getPrimerApellido()+"." + cont + "@cidenet.com.co");
             
           }
         else if(num != null){persona.setNumeroDeIdentificacion(null);}
